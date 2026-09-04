@@ -144,8 +144,11 @@ public final class Main extends JavaPlugin implements Listener, TabCompleter {
         }
 
         getServer().getPluginManager().registerEvents(this, this);
-        org.bukkit.command.PluginCommand adminCmd = getCommand("bestauth");
-        if (adminCmd != null) adminCmd.setTabCompleter(this);
+        org.bukkit.command.PluginCommand bestAuthCmd = getCommand("bestauth");
+        if (bestAuthCmd != null) bestAuthCmd.setTabCompleter(this);
+
+        org.bukkit.command.PluginCommand resetCmd = getCommand("sifre-sifirla");
+        if (resetCmd != null) resetCmd.setTabCompleter(this);
 
         getLogger().info("BestAuth enabled successfully!");
     }
@@ -510,21 +513,31 @@ public final class Main extends JavaPlugin implements Listener, TabCompleter {
         return null;
     }
 
-    private static final String[] IZINLI_KOMUTLAR = {
-        "/giris", "/kayit", "/sifre-sifirla",
-        "/login", "/register",
-        "/anmelden", "/registrieren", "/einloggen",
-        "/iniciar", "/registrar", "/registro",
-        "/bestauth", "/auth", "/authadmin",
-        "/resetpassword", "/sifresifirla",
-        "/auth-reload", "/kayit-reload"
-    };
-
     private boolean izinliKomut(String msg) {
-        String dusuk = msg.toLowerCase();
-        for (String k : IZINLI_KOMUTLAR) {
+        String dusuk = msg.toLowerCase().trim();
+        String aktifDil = messageManagerGetAktifDil();
+
+        // Evrensel / Global Komutlar (Her dilde izinli)
+        String[] global = {
+            "/login", "/register", "/bestauth", "/auth", "/authadmin",
+            "/resetpassword", "/auth-reload"
+        };
+        for (String k : global) {
             if (dusuk.equals(k) || dusuk.startsWith(k + " ")) return true;
         }
+
+        // Dile Ozel Komutlar
+        if (aktifDil.equals("tr")) {
+            String[] tr = {"/giris", "/kayit", "/sifre-sifirla", "/sifresifirla", "/kayit-reload"};
+            for (String k : tr) if (dusuk.equals(k) || dusuk.startsWith(k + " ")) return true;
+        } else if (aktifDil.equals("de")) {
+            String[] de = {"/anmelden", "/registrieren", "/einloggen", "/sifre-sifirla", "/kayit-reload"};
+            for (String k : de) if (dusuk.equals(k) || dusuk.startsWith(k + " ")) return true;
+        } else if (aktifDil.equals("es")) {
+            String[] es = {"/iniciar", "/registrar", "/registro", "/sifre-sifirla", "/kayit-reload"};
+            for (String k : es) if (dusuk.equals(k) || dusuk.startsWith(k + " ")) return true;
+        }
+
         return false;
     }
 
@@ -785,23 +798,6 @@ public final class Main extends JavaPlugin implements Listener, TabCompleter {
         if (!tabEngel) return;
         if (event.getSender() instanceof Player && bekliyor((Player) event.getSender())) {
             event.setCancelled(true);
-            return;
-        }
-        String buffer = event.getBuffer().toLowerCase();
-        if (event.getSender().hasPermission("bestauth.admin") && (buffer.startsWith("/bestauth ") || buffer.startsWith("/auth ") || buffer.startsWith("/authadmin "))) {
-            String[] parts = buffer.split(" ");
-            if (parts.length == 2) {
-                event.getCompletions().clear();
-                event.getCompletions().add("gormek");
-                event.getCompletions().add("view");
-                event.getCompletions().add("listele");
-                event.getCompletions().add("list");
-            } else if (parts.length >= 3 && (parts[1].equals("gormek") || parts[1].equals("view"))) {
-                event.getCompletions().clear();
-                for (Player p : Bukkit.getOnlinePlayers()) {
-                    event.getCompletions().add(p.getName());
-                }
-            }
         }
     }
 
@@ -809,13 +805,73 @@ public final class Main extends JavaPlugin implements Listener, TabCompleter {
     public java.util.List<String> onTabComplete(CommandSender sender, Command cmd, String label, String[] args) {
         String name = cmd.getName().toLowerCase();
         if ((name.equals("bestauth") || name.equals("auth") || name.equals("authadmin")) && sender.hasPermission("bestauth.admin")) {
-            if (args.length == 1) return java.util.Arrays.asList("gormek", "view", "listele", "list");
+            String aktifDil = messageManagerGetAktifDil();
+            if (args.length == 1) {
+                java.util.List<String> subCommands = new java.util.ArrayList<>();
+                if (aktifDil.equals("tr")) {
+                    subCommands.add("gormek");
+                    subCommands.add("listele");
+                    subCommands.add("view");
+                    subCommands.add("list");
+                } else if (aktifDil.equals("de")) {
+                    subCommands.add("view");
+                    subCommands.add("list");
+                } else if (aktifDil.equals("es")) {
+                    subCommands.add("view");
+                    subCommands.add("list");
+                } else {
+                    subCommands.add("view");
+                    subCommands.add("list");
+                }
+                String current = args[0].toLowerCase();
+                java.util.List<String> filtered = new java.util.ArrayList<>();
+                for (String s : subCommands) {
+                    if (s.toLowerCase().startsWith(current)) filtered.add(s);
+                }
+                return filtered;
+            }
             if (args.length == 2 && (args[0].equalsIgnoreCase("gormek") || args[0].equalsIgnoreCase("view"))) {
+                String current = args[1].toLowerCase();
                 java.util.List<String> list = new java.util.ArrayList<>();
-                for (Player p : Bukkit.getOnlinePlayers()) list.add(p.getName());
+                for (Player p : Bukkit.getOnlinePlayers()) {
+                    if (p.getName().toLowerCase().startsWith(current)) {
+                        list.add(p.getName());
+                    }
+                }
+                // Ayrica kayitli oyuncu isimlerini de ekle
+                for (String uid : tumUuidler()) {
+                    String ad = null;
+                    if (kayitConfig != null) {
+                        ad = kayitConfig.getString(uid + ".isim");
+                    }
+                    if (ad != null && ad.toLowerCase().startsWith(current) && !list.contains(ad)) {
+                        list.add(ad);
+                    }
+                }
                 return list;
             }
+            return java.util.Collections.emptyList();
         }
+
+        if ((name.equals("sifre-sifirla") || name.equals("resetpassword") || name.equals("sifresifirla")) && sender.hasPermission("bestauth.admin")) {
+            if (args.length == 1) {
+                String current = args[0].toLowerCase();
+                java.util.List<String> list = new java.util.ArrayList<>();
+                for (Player p : Bukkit.getOnlinePlayers()) {
+                    if (p.getName().toLowerCase().startsWith(current)) list.add(p.getName());
+                }
+                for (String uid : tumUuidler()) {
+                    String ad = null;
+                    if (kayitConfig != null) ad = kayitConfig.getString(uid + ".isim");
+                    if (ad != null && ad.toLowerCase().startsWith(current) && !list.contains(ad)) {
+                        list.add(ad);
+                    }
+                }
+                return list;
+            }
+            return java.util.Collections.emptyList();
+        }
+
         return super.onTabComplete(sender, cmd, label, args);
     }
 
