@@ -1,0 +1,37 @@
+name: BestAuth
+version: 1.0.0
+main: io.opencode.bestauth.Main
+api-version: "1.21"
+author: OpenCode
+description: Modern, guvenli ve cok dilli giris/kayit (Auth) sistemi
+
+commands:
+  giris:
+    description: Sifre ile giris yap / Login / Anmelden / Iniciar
+    usage: /<command> <sifre>
+    aliases: [login, anmelden, einloggen, iniciar]
+  kayit:
+    description: Ilk kayit ol / Register / Registrieren / Registrar
+    usage: /<command> <sifre>
+    aliases: [register, registrieren, registrar, registro]
+  bestauth:
+    description: Admin - oyuncu bilgilerini goster / Admin commands
+    usage: /<command> <gormek|view> <oyuncu>
+    aliases: [auth, authadmin]
+    permission: bestauth.admin
+  sifre-sifirla:
+    description: Admin - oyuncunun sifresini sifirla
+    usage: /<command> <oyuncu>
+    aliases: [resetpassword, sifresifirla]
+    permission: bestauth.admin
+  auth-reload:
+    description: Admin - yapilandirmayi ve dilleri yeniden yukle
+    usage: /<command>
+    aliases: [kayit-reload]
+    permission: bestauth.admin
+
+permissions:
+  bestauth.admin:
+    default: op
+  bestauth.muaf:
+    default: false

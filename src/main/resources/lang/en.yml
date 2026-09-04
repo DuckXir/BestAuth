@@ -1,0 +1,68 @@
+# ===== ENGLISH MESSAGES =====
+
+general:
+  prefix: "&7[&6BestAuth&7] "
+  no-permission: "&cYou don't have permission!"
+  player-only: "&cThis command is only for players."
+
+join:
+  register: "&6Welcome! Type &e/register <password> &6to register."
+  login: "&6Please type &e/login <password> &6to login."
+  different-ip: "&e[!] &cYou connected from a different IP address. Please &e/login <password> &cfor security."
+  sandbox: "&aSandbox mode active - No password required!"
+
+login:
+  success: "&aLogin successful! Welcome."
+  register: "&aRegistration successful! Welcome."
+  wrong-password: "&cWrong password!"
+  already-logged-in: "&aYou're already logged in!"
+  not-registered: "&cYou're not registered! /register <password>"
+  already-registered: "&cYou're already registered! /login <password>"
+  rate-limit: "&cToo many requests! Please wait."
+  too-many-attempts: "&cToo many wrong passwords!"
+  wait: "&cWait! Try again in &e%seconds% &cseconds."
+  remaining-attempts: "&7Remaining attempts: &e%count%"
+  vault-reward: "&aYou received &e%amount%$ &afor your first registration!"
+
+register:
+  usage: "&cUsage: /register <password>"
+  password-short: "&cPassword must be at least &e%min% &ccharacters!"
+  password-long: "&cPassword must be at most &e%max% &ccharacters!"
+  password-blacklisted: "&cThis password is too common! Please choose another."
+  max-accounts: "&cMaximum &e%max% &caccounts allowed per IP address!"
+
+password-reset:
+  usage: "&cUsage: /resetpassword <player>"
+  not-registered: "&cThis player is not registered."
+  reset-offline: "&a%player%'s password has been reset. (offline)"
+  reset-online: "&aYour password has been reset by admin. Use /register <password> to register again."
+
+admin:
+  ipgiris-usage: "&cUsage: /bestauth view <player> | /bestauth list"
+  registered-players: "&6Registered players:"
+  player-info: "&e%player% &7info:"
+  player-ip: " &7IP: &b%ip%"
+  player-last-login: " &7Last login: &b%date%"
+  player-unknown: "unknown"
+  reload-success: "&aConfig reloaded successfully!"
+
+chat:
+  join: "&a[+] &a%player%"
+  leave: "&c[-] &c%player%"
+
+title:
+  login: "&e/login <password>"
+  login-sub: "&7Enter your password"
+  register: "&e/register <password>"
+  register-sub: "&7Register now"
+  reminder-login: "&e/login <password> &7required!"
+  reminder-register: "&e/register <password> &7required!"
+
+kick:
+  no-auth-register: "&cYou did not register in time!\n&7Use /register <password>."
+  no-auth-login: "&cYou did not login in time!\n&7Use /login <password>."
+  ip-mismatch: "&cIP doesn't match registered IP!"
+  admin-reset: "&aYour password has been reset by admin.\n&7Use /register <password> to register again."
+
+time:
+  remaining: "&cYou have &e%seconds% &cseconds left to login!"

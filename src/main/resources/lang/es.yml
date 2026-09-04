@@ -1,0 +1,68 @@
+# ===== MENSAJES EN ESPAÑOL =====
+
+general:
+  prefix: "&7[&6BestAuth&7] "
+  no-permission: "&c¡No tienes permisos!"
+  player-only: "&cEste comando solo puede ser usado por jugadores."
+
+join:
+  register: "&6¡Bienvenido! Usa &e/registrar <contraseña> &6o &e/register <contraseña> &6para registrarte."
+  login: "&6Por favor usa &e/iniciar <contraseña> &6o &e/login <contraseña> &6para iniciar sesión."
+  different-ip: "&e[!] &cTe conectaste desde una IP diferente. Por seguridad usa &e/iniciar <contraseña>."
+  sandbox: "&a¡Modo sandbox activo - No se requiere contraseña!"
+
+login:
+  success: "&a¡Inicio de sesión exitoso! Bienvenido."
+  register: "&a¡Registro exitoso! Bienvenido."
+  wrong-password: "&c¡Contraseña incorrecta!"
+  already-logged-in: "&a¡Ya has iniciado sesión!"
+  not-registered: "&c¡No estás registrado! /registrar <contraseña>"
+  already-registered: "&c¡Ya estás registrado! /iniciar <contraseña>"
+  rate-limit: "&c¡Demasiadas solicitudes! Por favor espera."
+  too-many-attempts: "&c¡Demasiados intentos fallidos!"
+  wait: "&c¡Espera! Inténtalo de nuevo en &e%seconds% &csegundos."
+  remaining-attempts: "&7Intentos restantes: &e%count%"
+  vault-reward: "&a¡Recibiste &e%amount%$ &apor tu primer registro!"
+
+register:
+  usage: "&cUso: /registrar <contraseña> o /register <contraseña>"
+  password-short: "&c¡La contraseña debe tener al menos &e%min% &ccaracteres!"
+  password-long: "&c¡La contraseña no debe superar los &e%max% &ccaracteres!"
+  password-blacklisted: "&c¡Esta contraseña es muy común! Elige otra."
+  max-accounts: "&c¡Máximo &e%max% &ccuentas permitidas por dirección IP!"
+
+password-reset:
+  usage: "&cUso: /resetpassword <jugador>"
+  not-registered: "&cEste jugador no está registrado."
+  reset-offline: "&aLa contraseña de %player% ha sido restablecida. (offline)"
+  reset-online: "&aTu contraseña ha sido restablecida por un admin. Regístrate de nuevo con /registrar <contraseña>."
+
+admin:
+  ipgiris-usage: "&cUso: /bestauth gormek <jugador> | /bestauth listele"
+  registered-players: "&6Jugadores registrados:"
+  player-info: "&e%player% &7información:"
+  player-ip: " &7IP: &b%ip%"
+  player-last-login: " &7Último acceso: &b%date%"
+  player-unknown: "desconocido"
+  reload-success: "&a¡Configuración recargada con éxito!"
+
+chat:
+  join: "&a[+] &a%player%"
+  leave: "&c[-] &c%player%"
+
+title:
+  login: "&e/iniciar <contraseña>"
+  login-sub: "&7o /login <contraseña>"
+  register: "&e/registrar <contraseña>"
+  register-sub: "&7o /register <contraseña>"
+  reminder-login: "&e/iniciar <contraseña> &7requerido!"
+  reminder-register: "&e/registrar <contraseña> &7requerido!"
+
+kick:
+  no-auth-register: "&c¡Tiempo agotado sin registro!\n&7Usa /registrar <contraseña>."
+  no-auth-login: "&c¡Tiempo agotado sin iniciar sesión!\n&7Usa /iniciar <contraseña>."
+  ip-mismatch: "&c¡La IP no coincide con la registrada!"
+  admin-reset: "&aTu contraseña fue restablecida por el admin.\n&7Regístrate de nuevo con /registrar <contraseña>"
+
+time:
+  remaining: "&c¡Te quedan &e%seconds% &csegundos para iniciar sesión!"

@@ -1,0 +1,82 @@
+# ===== GIRIS SURESI =====
+# Oyuncunun giris yapmasi icin taninan sure (saniye)
+giris-suresi: 60
+
+# ===== DIL AYARI =====
+# tr (Turkce), en (Ingilizce), de (Almanca), es (Ispanyolca)
+dil: tr
+
+# ===== IP LOGLAMA =====
+ip-logla: true
+
+# ===== IP BASINA MAKSIMUM HESAP SAYISI =====
+# 1 IP adresi ile acilabilecek maksimum hesap sayisi
+maks-hesap-sayisi: 1
+
+# ===== VERITABANI AYARLARI =====
+# yaml, mysql veya sqlite
+veritabani-tipi: yaml
+
+mysql:
+  host: "localhost"
+  port: 3306
+  veritabani: "bestauth"
+  kullanici: "root"
+  sifre: ""
+
+# ===== SIFRE KURALLARI =====
+sifre-min: 4
+sifre-max: 32
+
+# ===== BRUTE FORCE KORUMASI =====
+maks-deneme: 3
+hata-gecikme: 2
+
+# ===== RATE LIMITING (IP BAZLI) =====
+rate-limit-aktif: true
+rate-limit-dakika: 5
+rate-limit-maks: 10
+
+# ===== VAULT EKONOMI ENTEGRASYONU =====
+# Sadece ilk defa /kayit veya /register olan oyunculara hos geldin odulu verir
+vault:
+  odul-aktif: true
+  odul-miktari: 100
+
+# ===== SANDBOX MODU =====
+# Test sunuculari icin sifre dogrulamayi devre disi birakir
+sandbox-modu: false
+
+# ===== SIFRE CHAT FILTRESI =====
+# Oyuncu sifresini chat'e yazarsa ***** olarak gizlenir
+sifre-filtre: true
+
+# ===== TAB COMPLETION ENGELI =====
+# Giris yapmamis oyuncu TAB basinca komut gormesini engeller
+tab-engel: true
+
+# ===== IP ILE OTOMATIK GIRIS =====
+# Kayitli IP ile eslesirse direkt giris yap, sifre sorma (Onerilmez: false)
+ip-giris-aktif: false
+ip-eslesme-oktet: 3
+
+# ===== ANIMSATICILAR =====
+# Giris yapmamis oyunculara belirli araliklarla hatirlatma
+animsatma-aktif: true
+animsatma-aralik: 30
+
+# ===== SIFRE KARA LISTESI =====
+sifre-kara-listesi:
+  - "1234"
+  - "12345"
+  - "123456"
+  - "sifre"
+  - "password"
+  - "qwerty"
+  - "abc123"
+  - "deneme"
+
+# ===== CHAT GORUNUMU =====
+chat:
+  join_enabled: true
+  leave_enabled: true

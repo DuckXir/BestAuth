@@ -1,0 +1,60 @@
+name: RegisterPlus
+version: '1.8'
+main: io.opencode.ipgiris.Main
+api-version: '1.21'
+authors: [T0m1keu, 373ms, OpenCode]
+description: IP + Sifreli giris sistemi ve giris/cikis mesajlari
+
+commands:
+  giris:
+    description: Sifre ile girisi yap
+    usage: /<command> <sifre>
+  kayit:
+    description: Ilk kayit ol (sifre belirle)
+    usage: /<command> <sifre>
+  ipgiris:
+    description: Admin - oyuncu bilgilerini goster
+    usage: /<command> <gormek/listele> [oyuncu]
+    permission: ipgiris.admin
+  sifre-sifirla:
+    description: Admin - oyuncunun sifresini sifirla
+    usage: /<command> <oyuncu>
+    permission: ipgiris.admin
+  kayit-reload:
+    description: Admin - config'i yeniden yukle
+    usage: /<command>
+    permission: ipgiris.admin
+  kayit-backup:
+    description: Admin - veritabanini yedekle
+    usage: /<command>
+    permission: ipgiris.admin
+  kayit-export:
+    description: Admin - verileri disa aktar
+    usage: /<command> [json/csv]
+    permission: ipgiris.admin
+  register:
+    description: Alias for kayit
+    usage: /<command> <sifre>
+  login:
+    description: Alias for giris
+    usage: /<command> <sifre>
+  unregister:
+    description: Hesabini sil
+    usage: /<command>
+  r:
+    description: Alias for giris
+    usage: /<command> <sifre>
+  autologin:
+    description: Otomatik giris
+    usage: /<command>
+
+permissions:
+  ipgiris.admin:
+    default: op
+    description: Admin yetkisi
+  ipgiris.muaf:
+    default: false
+    description: Giris muafiyeti
+  ipgiris.ipkilit:
+    default: false
+    description: IP kilitleme yetkisi
