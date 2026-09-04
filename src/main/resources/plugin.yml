@@ -9,11 +9,9 @@ commands:
   login:
     description: Login to your account
     usage: /<command> <password>
-    aliases: [giris]
   register:
     description: Register a new account
     usage: /<command> <password>
-    aliases: [kayit]
   bestauth:
     description: Administrative management commands
     usage: /<command> <view|list> [player]
@@ -22,12 +20,10 @@ commands:
   resetpassword:
     description: Reset a player's password
     usage: /<command> <player>
-    aliases: [sifre-sifirla, sifresifirla]
     permission: bestauth.admin
   auth-reload:
     description: Reload configuration and language files
     usage: /<command>
-    aliases: [kayit-reload]
     permission: bestauth.admin
 
 permissions:

@@ -514,10 +514,9 @@ public final class Main extends JavaPlugin implements Listener, TabCompleter {
     }
 
     private static final String[] IZINLI_KOMUTLAR = {
-        "/login", "/register", "/giris", "/kayit",
+        "/login", "/register",
         "/bestauth", "/auth", "/authadmin",
-        "/resetpassword", "/sifre-sifirla", "/sifresifirla",
-        "/auth-reload", "/kayit-reload"
+        "/resetpassword", "/auth-reload"
     };
 
     private boolean izinliKomut(String msg) {
@@ -792,24 +791,8 @@ public final class Main extends JavaPlugin implements Listener, TabCompleter {
     public java.util.List<String> onTabComplete(CommandSender sender, Command cmd, String label, String[] args) {
         String name = cmd.getName().toLowerCase();
         if ((name.equals("bestauth") || name.equals("auth") || name.equals("authadmin")) && sender.hasPermission("bestauth.admin")) {
-            String aktifDil = messageManagerGetAktifDil();
             if (args.length == 1) {
-                java.util.List<String> subCommands = new java.util.ArrayList<>();
-                if (aktifDil.equals("tr")) {
-                    subCommands.add("gormek");
-                    subCommands.add("listele");
-                    subCommands.add("view");
-                    subCommands.add("list");
-                } else if (aktifDil.equals("de")) {
-                    subCommands.add("view");
-                    subCommands.add("list");
-                } else if (aktifDil.equals("es")) {
-                    subCommands.add("view");
-                    subCommands.add("list");
-                } else {
-                    subCommands.add("view");
-                    subCommands.add("list");
-                }
+                java.util.List<String> subCommands = java.util.Arrays.asList("view", "list");
                 String current = args[0].toLowerCase();
                 java.util.List<String> filtered = new java.util.ArrayList<>();
                 for (String s : subCommands) {
@@ -817,7 +800,7 @@ public final class Main extends JavaPlugin implements Listener, TabCompleter {
                 }
                 return filtered;
             }
-            if (args.length == 2 && (args[0].equalsIgnoreCase("gormek") || args[0].equalsIgnoreCase("view"))) {
+            if (args.length == 2 && args[0].equalsIgnoreCase("view")) {
                 String current = args[1].toLowerCase();
                 java.util.List<String> list = new java.util.ArrayList<>();
                 for (Player p : Bukkit.getOnlinePlayers()) {
@@ -825,7 +808,6 @@ public final class Main extends JavaPlugin implements Listener, TabCompleter {
                         list.add(p.getName());
                     }
                 }
-                // Ayrica kayitli oyuncu isimlerini de ekle
                 for (String uid : tumUuidler()) {
                     String ad = null;
                     if (kayitConfig != null) {
@@ -840,7 +822,7 @@ public final class Main extends JavaPlugin implements Listener, TabCompleter {
             return java.util.Collections.emptyList();
         }
 
-        if ((name.equals("sifre-sifirla") || name.equals("resetpassword") || name.equals("sifresifirla")) && sender.hasPermission("bestauth.admin")) {
+        if (name.equals("resetpassword") && sender.hasPermission("bestauth.admin")) {
             if (args.length == 1) {
                 String current = args[0].toLowerCase();
                 java.util.List<String> list = new java.util.ArrayList<>();
@@ -880,7 +862,7 @@ public final class Main extends JavaPlugin implements Listener, TabCompleter {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         String cmdName = cmd.getName().toLowerCase();
 
-        if (cmdName.equals("kayit-reload") || cmdName.equals("auth-reload")) {
+        if (cmdName.equals("auth-reload")) {
             if (!sender.hasPermission("bestauth.admin")) {
                 sender.sendMessage(messageManager.getRenkliMesaj("general.no-permission"));
                 return true;
@@ -890,7 +872,7 @@ public final class Main extends JavaPlugin implements Listener, TabCompleter {
             return true;
         }
 
-        if (cmdName.equals("sifre-sifirla") || cmdName.equals("resetpassword") || cmdName.equals("sifresifirla")) {
+        if (cmdName.equals("resetpassword")) {
             if (!sender.hasPermission("bestauth.admin")) {
                 sender.sendMessage(messageManager.getRenkliMesaj("general.no-permission"));
                 return true;
@@ -938,7 +920,7 @@ public final class Main extends JavaPlugin implements Listener, TabCompleter {
         Player p = (Player) sender;
         String uuid = p.getUniqueId().toString();
 
-        if (cmdName.equals("kayit") || cmdName.equals("register")) {
+        if (cmdName.equals("register")) {
             if (sandboxModu) {
                 dogrulandi(p);
                 p.sendMessage(messageManager.getRenkliMesaj("join.sandbox"));
@@ -995,7 +977,7 @@ public final class Main extends JavaPlugin implements Listener, TabCompleter {
                 sender.sendMessage(messageManager.getRenkliMesaj("admin.ipgiris-usage"));
                 return true;
             }
-            if (args[0].equalsIgnoreCase("listele") || args[0].equalsIgnoreCase("list")) {
+            if (args[0].equalsIgnoreCase("list")) {
                 sender.sendMessage(messageManager.getRenkliMesaj("admin.registered-players"));
                 for (String uid : tumUuidler()) {
                     String ad = null;
@@ -1013,7 +995,7 @@ public final class Main extends JavaPlugin implements Listener, TabCompleter {
                 }
                 return true;
             }
-            if ((!args[0].equalsIgnoreCase("gormek") && !args[0].equalsIgnoreCase("view")) || args.length < 2) {
+            if (!args[0].equalsIgnoreCase("view") || args.length < 2) {
                 sender.sendMessage(messageManager.getRenkliMesaj("admin.ipgiris-usage"));
                 return true;
             }
@@ -1044,7 +1026,7 @@ public final class Main extends JavaPlugin implements Listener, TabCompleter {
             return true;
         }
 
-        if (cmdName.equals("giris") || cmdName.equals("login")) {
+        if (cmdName.equals("login")) {
             if (sandboxModu) {
                 dogrulandi(p);
                 p.sendMessage(messageManager.getRenkliMesaj("join.sandbox"));

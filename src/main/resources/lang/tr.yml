@@ -6,9 +6,9 @@ general:
   player-only: "&cBu komut sadece oyuncu icindir."
 
 join:
-  register: "&6Hos geldin! &e/kayit <sifre> &6veya &e/register <sifre> &6yazarak kayit ol."
-  login: "&6Lutfen &e/giris <sifre> &6veya &e/login <sifre> &6yazarak giris yap."
-  different-ip: "&e[!] &cFarkli bir IP adresinden baglandiniz. Guvenliginiz icin lutfen &e/giris <sifre> &cyapin."
+  register: "&6Hos geldin! &e/register <sifre> &6yazarak kayit ol."
+  login: "&6Lutfen &e/login <sifre> &6yazarak giris yap."
+  different-ip: "&e[!] &cFarkli bir IP adresinden baglandiniz. Guvenliginiz icin lutfen &e/login <sifre> &cyapin."
   sandbox: "&aSandbox modu aktif - Sifre gerekmiyor!"
 
 login:
@@ -16,8 +16,8 @@ login:
   register: "&aKayit basarili! Hos geldin."
   wrong-password: "&cYanlis sifre!"
   already-logged-in: "&aZaten giris yaptin!"
-  not-registered: "&cKayitli degilsin! Lutfen /kayit <sifre> yaz."
-  already-registered: "&cZaten kayitlisin! Lutfen /giris <sifre> yaz."
+  not-registered: "&cKayitli degilsin! Lutfen /register <sifre> yaz."
+  already-registered: "&cZaten kayitlisin! Lutfen /login <sifre> yaz."
   rate-limit: "&cCok fazla istek gonderdiniz! Lutfen bekleyin."
   too-many-attempts: "&cCok fazla yanlis sifre!"
   wait: "&cBekle! &e%seconds% &csaniye sonra tekrar dene."
@@ -25,17 +25,17 @@ login:
   vault-reward: "&aIlk kaydiniz icin hesabiniza &e%amount%$ &aeklendi!"
 
 register:
-  usage: "&cKullanim: /kayit <sifre> veya /register <sifre>"
+  usage: "&cKullanim: /register <sifre>"
   password-short: "&cSifre en az &e%min% &ckarakter olmali!"
   password-long: "&cSifre en fazla &e%max% &ckarakter olmali!"
   password-blacklisted: "&cBu sifre cok yaygin! Lutfen baska bir sifre sec."
   max-accounts: "&cBu IP adresinden en fazla &e%max% &chesap acabilirsiniz!"
 
 password-reset:
-  usage: "&cKullanim: /resetpassword <oyuncu> veya /sifre-sifirla <oyuncu>"
+  usage: "&cKullanim: /resetpassword <oyuncu>"
   not-registered: "&cBu oyuncunun kaydi yok."
   reset-offline: "&a%player% sifresi sifirlandi. (offline)"
-  reset-online: "&aSifren admin tarafindan sifirlandi. Tekrar /kayit <sifre> ile kayit ol."
+  reset-online: "&aSifren admin tarafindan sifirlandi. Tekrar /register <sifre> ile kayit ol."
 
 admin:
   ipgiris-usage: "&cKullanim: /bestauth view <oyuncu> | /bestauth list"
@@ -51,18 +51,18 @@ chat:
   leave: "&c[-] &c%player%"
 
 title:
-  login: "&e/giris <sifre>"
-  login-sub: "&7veya /login <sifre>"
-  register: "&e/kayit <sifre>"
-  register-sub: "&7veya /register <sifre>"
-  reminder-login: "&e/giris <sifre> &7yazmalisin!"
-  reminder-register: "&e/kayit <sifre> &7yazmalisin!"
+  login: "&e/login <sifre>"
+  login-sub: "&7Sifreni gir"
+  register: "&e/register <sifre>"
+  register-sub: "&7Kayit ol"
+  reminder-login: "&e/login <sifre> &7yazmalisin!"
+  reminder-register: "&e/register <sifre> &7yazmalisin!"
 
 kick:
-  no-auth-register: "&cSuresi icinde kayit olmadiniz!\n&7/kayit <sifre> ile kayit olun."
-  no-auth-login: "&cSuresi icinde giris yapmadiniz!\n&7/giris <sifre> ile giris yapin."
+  no-auth-register: "&cSuresi icinde kayit olmadiniz!\n&7/register <sifre> ile kayit olun."
+  no-auth-login: "&cSuresi icinde giris yapmadiniz!\n&7/login <sifre> ile giris yapin."
   ip-mismatch: "&cKayitli IP ile eslesmiyor!"
-  admin-reset: "&aSifren admin tarafindan sifirlandi.\n&7Tekrar /kayit <sifre> ile kayit ol."
+  admin-reset: "&aSifren admin tarafindan sifirlandi.\n&7Tekrar /register <sifre> ile kayit ol."
 
 time:
   remaining: "&cGiris yapmak icin &e%seconds% &csaniyeniz kaldi!"
