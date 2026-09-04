@@ -515,7 +515,7 @@ public final class Main extends JavaPlugin implements Listener, TabCompleter {
 
     private static final String[] IZINLI_KOMUTLAR = {
         "/login", "/register",
-        "/bestauth", "/auth", "/authadmin",
+        "/bestauth",
         "/resetpassword", "/auth-reload"
     };
 
@@ -790,7 +790,7 @@ public final class Main extends JavaPlugin implements Listener, TabCompleter {
     @Override
     public java.util.List<String> onTabComplete(CommandSender sender, Command cmd, String label, String[] args) {
         String name = cmd.getName().toLowerCase();
-        if ((name.equals("bestauth") || name.equals("auth") || name.equals("authadmin")) && sender.hasPermission("bestauth.admin")) {
+        if (name.equals("bestauth") && sender.hasPermission("bestauth.admin")) {
             if (args.length == 1) {
                 java.util.List<String> subCommands = java.util.Arrays.asList("view", "list");
                 String current = args[0].toLowerCase();
@@ -968,7 +968,7 @@ public final class Main extends JavaPlugin implements Listener, TabCompleter {
             return true;
         }
 
-        if (cmdName.equals("bestauth") || cmdName.equals("auth") || cmdName.equals("authadmin")) {
+        if (cmdName.equals("bestauth")) {
             if (!sender.hasPermission("bestauth.admin")) {
                 sender.sendMessage(messageManager.getRenkliMesaj("general.no-permission"));
                 return true;

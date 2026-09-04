@@ -15,7 +15,6 @@ commands:
   bestauth:
     description: Administrative management commands
     usage: /<command> <view|list> [player]
-    aliases: [auth, authadmin]
     permission: bestauth.admin
   resetpassword:
     description: Reset a player's password
