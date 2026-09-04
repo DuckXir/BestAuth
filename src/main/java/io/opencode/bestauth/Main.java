@@ -147,7 +147,7 @@ public final class Main extends JavaPlugin implements Listener, TabCompleter {
         org.bukkit.command.PluginCommand bestAuthCmd = getCommand("bestauth");
         if (bestAuthCmd != null) bestAuthCmd.setTabCompleter(this);
 
-        org.bukkit.command.PluginCommand resetCmd = getCommand("sifre-sifirla");
+        org.bukkit.command.PluginCommand resetCmd = getCommand("resetpassword");
         if (resetCmd != null) resetCmd.setTabCompleter(this);
 
         getLogger().info("BestAuth enabled successfully!");
@@ -513,31 +513,18 @@ public final class Main extends JavaPlugin implements Listener, TabCompleter {
         return null;
     }
 
+    private static final String[] IZINLI_KOMUTLAR = {
+        "/login", "/register", "/giris", "/kayit",
+        "/bestauth", "/auth", "/authadmin",
+        "/resetpassword", "/sifre-sifirla", "/sifresifirla",
+        "/auth-reload", "/kayit-reload"
+    };
+
     private boolean izinliKomut(String msg) {
         String dusuk = msg.toLowerCase().trim();
-        String aktifDil = messageManagerGetAktifDil();
-
-        // Evrensel / Global Komutlar (Her dilde izinli)
-        String[] global = {
-            "/login", "/register", "/bestauth", "/auth", "/authadmin",
-            "/resetpassword", "/auth-reload"
-        };
-        for (String k : global) {
+        for (String k : IZINLI_KOMUTLAR) {
             if (dusuk.equals(k) || dusuk.startsWith(k + " ")) return true;
         }
-
-        // Dile Ozel Komutlar
-        if (aktifDil.equals("tr")) {
-            String[] tr = {"/giris", "/kayit", "/sifre-sifirla", "/sifresifirla", "/kayit-reload"};
-            for (String k : tr) if (dusuk.equals(k) || dusuk.startsWith(k + " ")) return true;
-        } else if (aktifDil.equals("de")) {
-            String[] de = {"/anmelden", "/registrieren", "/einloggen", "/sifre-sifirla", "/kayit-reload"};
-            for (String k : de) if (dusuk.equals(k) || dusuk.startsWith(k + " ")) return true;
-        } else if (aktifDil.equals("es")) {
-            String[] es = {"/iniciar", "/registrar", "/registro", "/sifre-sifirla", "/kayit-reload"};
-            for (String k : es) if (dusuk.equals(k) || dusuk.startsWith(k + " ")) return true;
-        }
-
         return false;
     }
 
@@ -951,7 +938,7 @@ public final class Main extends JavaPlugin implements Listener, TabCompleter {
         Player p = (Player) sender;
         String uuid = p.getUniqueId().toString();
 
-        if (cmdName.equals("kayit") || cmdName.equals("register") || cmdName.equals("registrieren") || cmdName.equals("registrar") || cmdName.equals("registro")) {
+        if (cmdName.equals("kayit") || cmdName.equals("register")) {
             if (sandboxModu) {
                 dogrulandi(p);
                 p.sendMessage(messageManager.getRenkliMesaj("join.sandbox"));
@@ -1057,7 +1044,7 @@ public final class Main extends JavaPlugin implements Listener, TabCompleter {
             return true;
         }
 
-        if (cmdName.equals("giris") || cmdName.equals("login") || cmdName.equals("anmelden") || cmdName.equals("einloggen") || cmdName.equals("iniciar")) {
+        if (cmdName.equals("giris") || cmdName.equals("login")) {
             if (sandboxModu) {
                 dogrulandi(p);
                 p.sendMessage(messageManager.getRenkliMesaj("join.sandbox"));

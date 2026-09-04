@@ -6,23 +6,23 @@ author: OpenCode
 description: Modern, secure, and multi-language player authentication plugin
 
 commands:
-  giris:
+  login:
     description: Login to your account
     usage: /<command> <password>
-    aliases: [login, anmelden, einloggen, iniciar]
-  kayit:
+    aliases: [giris]
+  register:
     description: Register a new account
     usage: /<command> <password>
-    aliases: [register, registrieren, registrar, registro]
+    aliases: [kayit]
   bestauth:
     description: Administrative management commands
     usage: /<command> <view|list> [player]
     aliases: [auth, authadmin]
     permission: bestauth.admin
-  sifre-sifirla:
+  resetpassword:
     description: Reset a player's password
     usage: /<command> <player>
-    aliases: [resetpassword, sifresifirla]
+    aliases: [sifre-sifirla, sifresifirla]
     permission: bestauth.admin
   auth-reload:
     description: Reload configuration and language files

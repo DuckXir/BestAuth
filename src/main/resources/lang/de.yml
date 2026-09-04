@@ -6,9 +6,9 @@ general:
   player-only: "&cDieser Befehl ist nur für Spieler."
 
 join:
-  register: "&6Willkommen! Nutze &e/registrieren <Passwort> &6oder &e/register <Passwort> &6zum Registrieren."
-  login: "&6Bitte nutze &e/anmelden <Passwort> &6oder &e/login <Passwort> &6zum Anmelden."
-  different-ip: "&e[!] &cDu hast dich von einer anderen IP verbunden. Bitte &e/anmelden <Passwort> &ceingeben."
+  register: "&6Willkommen! Nutze &e/register <Passwort> &6zum Registrieren."
+  login: "&6Bitte nutze &e/login <Passwort> &6zum Anmelden."
+  different-ip: "&e[!] &cDu hast dich von einer anderen IP verbunden. Bitte &e/login <Passwort> &ceingeben."
   sandbox: "&aSandbox-Modus aktiv - Kein Passwort erforderlich!"
 
 login:
@@ -16,8 +16,8 @@ login:
   register: "&aErfolgreich registriert! Willkommen."
   wrong-password: "&cFalsches Passwort!"
   already-logged-in: "&aDu bist bereits angemeldet!"
-  not-registered: "&cDu bist nicht registriert! /registrieren <Passwort>"
-  already-registered: "&cDu bist bereits registriert! /anmelden <Passwort>"
+  not-registered: "&cDu bist nicht registriert! /register <Passwort>"
+  already-registered: "&cDu bist bereits registriert! /login <Passwort>"
   rate-limit: "&cZu viele Anfragen! Bitte warte kurz."
   too-many-attempts: "&cZu viele Fehlversuche!"
   wait: "&cWarte! Bitte in &e%seconds% &cSekunden erneut versuchen."
@@ -25,7 +25,7 @@ login:
   vault-reward: "&aDu hast &e%amount%$ &afür deine erste Registrierung erhalten!"
 
 register:
-  usage: "&cVerwendung: /registrieren <Passwort> oder /register <Passwort>"
+  usage: "&cVerwendung: /register <Passwort>"
   password-short: "&cPasswort muss mindestens &e%min% &cZeichen lang sein!"
   password-long: "&cPasswort darf maximal &e%max% &cZeichen lang sein!"
   password-blacklisted: "&cDieses Passwort ist zu einfach! Wähle ein anderes."
@@ -35,10 +35,10 @@ password-reset:
   usage: "&cVerwendung: /resetpassword <Spieler>"
   not-registered: "&cDieser Spieler ist nicht registriert."
   reset-offline: "&aDas Passwort von %player% wurde zurückgesetzt. (offline)"
-  reset-online: "&aDein Passwort wurde vom Admin zurückgesetzt. Registriere dich mit /registrieren <Passwort> neu."
+  reset-online: "&aDein Passwort wurde vom Admin zurückgesetzt. Registriere dich mit /register <Passwort> neu."
 
 admin:
-  ipgiris-usage: "&cVerwendung: /bestauth gormek <Spieler> | /bestauth listele"
+  ipgiris-usage: "&cVerwendung: /bestauth view <Spieler> | /bestauth list"
   registered-players: "&6Registrierte Spieler:"
   player-info: "&e%player% &7Informationen:"
   player-ip: " &7IP: &b%ip%"
@@ -51,18 +51,18 @@ chat:
   leave: "&c[-] &c%player%"
 
 title:
-  login: "&e/anmelden <Passwort>"
-  login-sub: "&7oder /login <Passwort>"
-  register: "&e/registrieren <Passwort>"
-  register-sub: "&7oder /register <Passwort>"
-  reminder-login: "&e/anmelden <Passwort> &7erforderlich!"
-  reminder-register: "&e/registrieren <Passwort> &7erforderlich!"
+  login: "&e/login <Passwort>"
+  login-sub: "&7Passwort eingeben"
+  register: "&e/register <Passwort>"
+  register-sub: "&7Registrieren"
+  reminder-login: "&e/login <Passwort> &7erforderlich!"
+  reminder-register: "&e/register <Passwort> &7erforderlich!"
 
 kick:
-  no-auth-register: "&cZeit abgelaufen! Nicht rechtzeitig registriert.\n&7Nutze /registrieren <Passwort>."
-  no-auth-login: "&cZeit abgelaufen! Nicht rechtzeitig angemeldet.\n&7Nutze /anmelden <Passwort>."
+  no-auth-register: "&cZeit abgelaufen! Nicht rechtzeitig registriert.\n&7Nutze /register <Passwort>."
+  no-auth-login: "&cZeit abgelaufen! Nicht rechtzeitig angemeldet.\n&7Nutze /login <Passwort>."
   ip-mismatch: "&cIP stimmt nicht mit der registrierten IP überein!"
-  admin-reset: "&aDein Passwort wurde vom Admin zurückgesetzt.\n&7Registriere dich neu mit /registrieren <Passwort>"
+  admin-reset: "&aDein Passwort wurde vom Admin zurückgesetzt.\n&7Registriere dich neu mit /register <Passwort>"
 
 time:
   remaining: "&cDu hast noch &e%seconds% &cSekunden zum Anmelden!"

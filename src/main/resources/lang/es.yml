@@ -6,9 +6,9 @@ general:
   player-only: "&cEste comando solo puede ser usado por jugadores."
 
 join:
-  register: "&6¡Bienvenido! Usa &e/registrar <contraseña> &6o &e/register <contraseña> &6para registrarte."
-  login: "&6Por favor usa &e/iniciar <contraseña> &6o &e/login <contraseña> &6para iniciar sesión."
-  different-ip: "&e[!] &cTe conectaste desde una IP diferente. Por seguridad usa &e/iniciar <contraseña>."
+  register: "&6¡Bienvenido! Usa &e/register <contraseña> &6para registrarte."
+  login: "&6Por favor usa &e/login <contraseña> &6para iniciar sesión."
+  different-ip: "&e[!] &cTe conectaste desde una IP diferente. Por seguridad usa &e/login <contraseña>."
   sandbox: "&a¡Modo sandbox activo - No se requiere contraseña!"
 
 login:
@@ -16,8 +16,8 @@ login:
   register: "&a¡Registro exitoso! Bienvenido."
   wrong-password: "&c¡Contraseña incorrecta!"
   already-logged-in: "&a¡Ya has iniciado sesión!"
-  not-registered: "&c¡No estás registrado! /registrar <contraseña>"
-  already-registered: "&c¡Ya estás registrado! /iniciar <contraseña>"
+  not-registered: "&c¡No estás registrado! /register <contraseña>"
+  already-registered: "&c¡Ya estás registrado! /login <contraseña>"
   rate-limit: "&c¡Demasiadas solicitudes! Por favor espera."
   too-many-attempts: "&c¡Demasiados intentos fallidos!"
   wait: "&c¡Espera! Inténtalo de nuevo en &e%seconds% &csegundos."
@@ -25,7 +25,7 @@ login:
   vault-reward: "&a¡Recibiste &e%amount%$ &apor tu primer registro!"
 
 register:
-  usage: "&cUso: /registrar <contraseña> o /register <contraseña>"
+  usage: "&cUso: /register <contraseña>"
   password-short: "&c¡La contraseña debe tener al menos &e%min% &ccaracteres!"
   password-long: "&c¡La contraseña no debe superar los &e%max% &ccaracteres!"
   password-blacklisted: "&c¡Esta contraseña es muy común! Elige otra."
@@ -35,10 +35,10 @@ password-reset:
   usage: "&cUso: /resetpassword <jugador>"
   not-registered: "&cEste jugador no está registrado."
   reset-offline: "&aLa contraseña de %player% ha sido restablecida. (offline)"
-  reset-online: "&aTu contraseña ha sido restablecida por un admin. Regístrate de nuevo con /registrar <contraseña>."
+  reset-online: "&aTu contraseña ha sido restablecida por un admin. Regístrate de nuevo con /register <contraseña>."
 
 admin:
-  ipgiris-usage: "&cUso: /bestauth gormek <jugador> | /bestauth listele"
+  ipgiris-usage: "&cUso: /bestauth view <jugador> | /bestauth list"
   registered-players: "&6Jugadores registrados:"
   player-info: "&e%player% &7información:"
   player-ip: " &7IP: &b%ip%"
@@ -51,18 +51,18 @@ chat:
   leave: "&c[-] &c%player%"
 
 title:
-  login: "&e/iniciar <contraseña>"
-  login-sub: "&7o /login <contraseña>"
-  register: "&e/registrar <contraseña>"
-  register-sub: "&7o /register <contraseña>"
-  reminder-login: "&e/iniciar <contraseña> &7requerido!"
-  reminder-register: "&e/registrar <contraseña> &7requerido!"
+  login: "&e/login <contraseña>"
+  login-sub: "&7Ingresa tu contraseña"
+  register: "&e/register <contraseña>"
+  register-sub: "&7Regístrate"
+  reminder-login: "&e/login <contraseña> &7requerido!"
+  reminder-register: "&e/register <contraseña> &7requerido!"
 
 kick:
-  no-auth-register: "&c¡Tiempo agotado sin registro!\n&7Usa /registrar <contraseña>."
-  no-auth-login: "&c¡Tiempo agotado sin iniciar sesión!\n&7Usa /iniciar <contraseña>."
+  no-auth-register: "&c¡Tiempo agotado sin registro!\n&7Usa /register <contraseña>."
+  no-auth-login: "&c¡Tiempo agotado sin iniciar sesión!\n&7Usa /login <contraseña>."
   ip-mismatch: "&c¡La IP no coincide con la registrada!"
-  admin-reset: "&aTu contraseña fue restablecida por el admin.\n&7Regístrate de nuevo con /registrar <contraseña>"
+  admin-reset: "&aTu contraseña fue restablecida por el admin.\n&7Regístrate de nuevo con /register <contraseña>"
 
 time:
   remaining: "&c¡Te quedan &e%seconds% &csegundos para iniciar sesión!"
