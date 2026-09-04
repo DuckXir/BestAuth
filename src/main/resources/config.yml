@@ -1,20 +1,20 @@
-# ===== GIRIS SURESI =====
-# Oyuncunun giris yapmasi icin taninan sure (saniye)
+# ===== LOGIN TIME LIMIT =====
+# Time limit for players to log in (seconds)
 giris-suresi: 60
 
-# ===== DIL AYARI =====
-# tr (Turkce), en (Ingilizce), de (Almanca), es (Ispanyolca)
-dil: tr
+# ===== DEFAULT LANGUAGE =====
+# Options: en (English), tr (Turkish), de (German), es (Spanish)
+dil: en
 
-# ===== IP LOGLAMA =====
+# ===== IP LOGGING =====
 ip-logla: true
 
-# ===== IP BASINA MAKSIMUM HESAP SAYISI =====
-# 1 IP adresi ile acilabilecek maksimum hesap sayisi
+# ===== MAX ACCOUNTS PER IP =====
+# Maximum accounts allowed per single IP address
 maks-hesap-sayisi: 1
 
-# ===== VERITABANI AYARLARI =====
-# yaml, mysql veya sqlite
+# ===== DATABASE SETTINGS =====
+# Options: yaml, sqlite, mysql
 veritabani-tipi: yaml
 
 mysql:
@@ -24,48 +24,49 @@ mysql:
   kullanici: "root"
   sifre: ""
 
-# ===== SIFRE KURALLARI =====
+# ===== PASSWORD RULES =====
 sifre-min: 4
 sifre-max: 32
 
-# ===== BRUTE FORCE KORUMASI =====
+# ===== BRUTE FORCE PROTECTION =====
 maks-deneme: 3
 hata-gecikme: 2
 
-# ===== RATE LIMITING (IP BAZLI) =====
+# ===== RATE LIMITING (IP BASED) =====
 rate-limit-aktif: true
 rate-limit-dakika: 5
 rate-limit-maks: 10
 
-# ===== VAULT EKONOMI ENTEGRASYONU =====
-# Sadece ilk defa /kayit veya /register olan oyunculara hos geldin odulu verir
+# ===== VAULT ECONOMY INTEGRATION =====
+# Rewards players with money upon their first registration
 vault:
   odul-aktif: true
   odul-miktari: 100
 
-# ===== SANDBOX MODU =====
-# Test sunuculari icin sifre dogrulamayi devre disi birakir
+# ===== SANDBOX MODE =====
+# Disables password verification for testing servers (Default: false)
 sandbox-modu: false
 
-# ===== SIFRE CHAT FILTRESI =====
-# Oyuncu sifresini chat'e yazarsa ***** olarak gizlenir
+# ===== CHAT PASSWORD FILTER =====
+# Replaces passwords with ***** if accidentally typed in chat
 sifre-filtre: true
 
-# ===== TAB COMPLETION ENGELI =====
-# Giris yapmamis oyuncu TAB basinca komut gormesini engeller
+# ===== TAB COMPLETION BLOCK =====
+# Blocks command completion for unauthenticated players
 tab-engel: true
 
-# ===== IP ILE OTOMATIK GIRIS =====
-# Kayitli IP ile eslesirse direkt giris yap, sifre sorma (Onerilmez: false)
+# ===== AUTO LOGIN BY IP =====
+# Automatically logs in if IP matches (Not recommended: false)
 ip-giris-aktif: false
 ip-eslesme-oktet: 3
 
-# ===== ANIMSATICILAR =====
-# Giris yapmamis oyunculara belirli araliklarla hatirlatma
+# ===== REMINDERS =====
+# Periodically reminds unauthenticated players to log in
 animsatma-aktif: true
 animsatma-aralik: 30
 
-# ===== SIFRE KARA LISTESI =====
+# ===== PASSWORD BLACKLIST =====
+# Disallows easily guessable passwords
 sifre-kara-listesi:
   - "1234"
   - "12345"
@@ -76,7 +77,7 @@ sifre-kara-listesi:
   - "abc123"
   - "deneme"
 
-# ===== CHAT GORUNUMU =====
+# ===== CHAT MESSAGES =====
 chat:
   join_enabled: true
   leave_enabled: true

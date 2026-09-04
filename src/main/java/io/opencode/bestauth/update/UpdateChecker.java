@@ -53,13 +53,13 @@ public class UpdateChecker {
 
                             if (!mevcutSurum.equals(yeniSurum)) {
                                 guncellemeVar = true;
-                                plugin.getLogger().info("Yeni guncelleme mevcut: " + yeniSurum);
+                                plugin.getLogger().info("New update available: " + yeniSurum);
                             }
                         }
                     }
                 }
             } catch (Exception e) {
-                plugin.getLogger().warning("Guncelleme kontrolu basarisiz: " + e.getMessage());
+                plugin.getLogger().warning("Update check failed: " + e.getMessage());
             }
         });
     }

@@ -28,9 +28,9 @@ public class MetricsManager {
                 return plugin.getConfig().getString("dil", "tr");
             }));
 
-            plugin.getLogger().info("bStats Metrics baslatildi!");
+            plugin.getLogger().info("bStats metrics started successfully!");
         } catch (Exception e) {
-            plugin.getLogger().warning("bStats Metrics baslatilamadi: " + e.getMessage());
+            plugin.getLogger().warning("Could not start bStats metrics: " + e.getMessage());
         }
     }
 }

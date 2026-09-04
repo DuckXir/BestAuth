@@ -109,9 +109,9 @@ public final class Main extends JavaPlugin implements Listener, TabCompleter {
                     );
                 }
                 dbManager.baglan();
-                getLogger().info(veritabaniTipi.toUpperCase() + " veritabanina baglanildi!");
+                getLogger().info(veritabaniTipi.toUpperCase() + " database connected successfully!");
             } catch (Exception e) {
-                getLogger().severe(veritabaniTipi + " veritabanina baglanilamadi! YAML kullaniliyor.");
+                getLogger().severe("Failed to connect to " + veritabaniTipi + " database! Falling back to YAML.");
                 veritabaniTipi = "yaml";
                 dbManager = null;
             }
@@ -123,7 +123,7 @@ public final class Main extends JavaPlugin implements Listener, TabCompleter {
                 try {
                     kayitDosya.createNewFile();
                 } catch (IOException e) {
-                    getLogger().severe("kayitli-oyuncular.yml olusturulamadi!");
+                    getLogger().severe("Could not create kayitli-oyuncular.yml!");
                 }
             }
             kayitConfig = YamlConfiguration.loadConfiguration(kayitDosya);
@@ -147,7 +147,7 @@ public final class Main extends JavaPlugin implements Listener, TabCompleter {
         org.bukkit.command.PluginCommand adminCmd = getCommand("bestauth");
         if (adminCmd != null) adminCmd.setTabCompleter(this);
 
-        getLogger().info("BestAuth aktif!");
+        getLogger().info("BestAuth enabled successfully!");
     }
 
     @Override
@@ -155,7 +155,7 @@ public final class Main extends JavaPlugin implements Listener, TabCompleter {
         if (dbManager != null) {
             dbManager.kapat();
         }
-        getLogger().info("BestAuth devre disi!");
+        getLogger().info("BestAuth disabled!");
     }
 
     public boolean dogrulanmis(String uuid) {
@@ -239,7 +239,7 @@ public final class Main extends JavaPlugin implements Listener, TabCompleter {
         try {
             kayitConfig.save(kayitDosya);
         } catch (IOException e) {
-            getLogger().severe("kayitli-oyuncular.yml kaydedilemedi!");
+            getLogger().severe("Could not save kayitli-oyuncular.yml!");
         }
     }
 
@@ -317,7 +317,7 @@ public final class Main extends JavaPlugin implements Listener, TabCompleter {
                     kayitConfig.set(uuid + ".sifre", yeniHash);
                     kaydet();
                 }
-                getLogger().info(uuid + " icin eski hash yeni salt ile guncellendi.");
+                getLogger().info("Password hash updated with new salt for UUID: " + uuid);
             }
             return true;
         }

@@ -3,35 +3,37 @@ version: 1.0.0
 main: io.opencode.bestauth.Main
 api-version: "1.21"
 author: OpenCode
-description: Modern, guvenli ve cok dilli giris/kayit (Auth) sistemi
+description: Modern, secure, and multi-language player authentication plugin
 
 commands:
   giris:
-    description: Sifre ile giris yap / Login / Anmelden / Iniciar
-    usage: /<command> <sifre>
+    description: Login to your account
+    usage: /<command> <password>
     aliases: [login, anmelden, einloggen, iniciar]
   kayit:
-    description: Ilk kayit ol / Register / Registrieren / Registrar
-    usage: /<command> <sifre>
+    description: Register a new account
+    usage: /<command> <password>
     aliases: [register, registrieren, registrar, registro]
   bestauth:
-    description: Admin - oyuncu bilgilerini goster / Admin commands
-    usage: /<command> <gormek|view> <oyuncu>
+    description: Administrative management commands
+    usage: /<command> <view|list> [player]
     aliases: [auth, authadmin]
     permission: bestauth.admin
   sifre-sifirla:
-    description: Admin - oyuncunun sifresini sifirla
-    usage: /<command> <oyuncu>
+    description: Reset a player's password
+    usage: /<command> <player>
     aliases: [resetpassword, sifresifirla]
     permission: bestauth.admin
   auth-reload:
-    description: Admin - yapilandirmayi ve dilleri yeniden yukle
+    description: Reload configuration and language files
     usage: /<command>
     aliases: [kayit-reload]
     permission: bestauth.admin
 
 permissions:
   bestauth.admin:
+    description: Access to administrative commands
     default: op
   bestauth.muaf:
+    description: Bypass authentication requirements
     default: false
