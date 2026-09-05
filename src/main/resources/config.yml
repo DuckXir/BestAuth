@@ -1,21 +1,31 @@
+# ==============================================================================
+#                              BestAuth Configuration
+# ==============================================================================
+
 # ===== LOGIN TIME LIMIT =====
-# Time limit for players to authenticate in seconds (Giris icin taninan sure - saniye)
+# Time limit (in seconds) for unauthenticated players to log in or register.
+# (Giris yapmamis oyuncularin kayit olmak veya giris yapmak icin sahip oldugu toplam sure - saniye cinsinden)
 login-timeout: 60
 
 # ===== DEFAULT LANGUAGE =====
-# Options (Secenekler): en (English), tr (Turkce), de (Deutsch), es (Espanol)
+# The primary language used for all in-game messages, titles, and kick screens.
+# Available options: en (English), tr (Turkce), de (Deutsch), es (Espanol)
+# (Oyun ici mesajlar, ekran basliklari ve bildirimler icin varsayilan dil ayari)
 language: en
 
 # ===== IP LOGGING =====
-# Saves player IP addresses on successful authentication (IP adreslerini kaydetme)
+# Automatically saves player IP addresses upon successful authentication for admin inspection.
+# (Oyuncular basariyla giris yaptiginda guvenlik ve denetim amaciyla IP adreslerini kaydeder)
 log-ip: true
 
 # ===== MAX ACCOUNTS PER IP =====
-# Maximum registered accounts allowed per single IP address (IP basina maksimum hesap sayisi)
+# Maximum number of registered accounts allowed per single IP address. Prevents multi-account abuse.
+# (Tek bir IP adresinden acilabilecek maksimum hesap sayisi. Yan hesap ve bot olusturulmasini engeller)
 max-accounts-per-ip: 1
 
 # ===== DATABASE SETTINGS =====
-# Storage types (Depolama turu): yaml, sqlite, mysql
+# Data storage backend. Supported options: yaml, sqlite, mysql
+# (Verilerin kaydedilecegi veritabani turu. Desteklenen secenekler: yaml, sqlite, mysql)
 database-type: yaml
 
 mysql:
@@ -26,51 +36,61 @@ mysql:
   password: ""
 
 # ===== PASSWORD RULES =====
-# Minimum and maximum password length (Minimum ve maksimum sifre uzunlugu)
+# Minimum and maximum character length required for player passwords.
+# (Oyuncu sifrelerinin sahip olabilecegi minimum ve maksimum karakter uzunlugu sinirlari)
 password-min-length: 4
 password-max-length: 32
 
 # ===== BRUTE FORCE PROTECTION =====
-# Max failed attempts before kick & delay in seconds (Maksimum yanlis deneme hakki ve bekleme suresi)
+# Max failed login attempts before kicking the player, and delay (in seconds) between retries.
+# (Maksimum hatali sifre deneme hakki ve her yanlis denemeden sonraki zorunlu bekleme suresi - saniye)
 max-login-attempts: 3
 failed-attempt-delay: 2
 
 # ===== RATE LIMITING (IP BASED) =====
-# Prevents bot request spam (Botlarin seri istek gondermesini engeller)
+# Protects against rapid bot requests and spam attacks by limiting login attempts within a time window.
+# (Belirli bir zaman diliminde ayni IP'den yapilan istekleri sinirlayarak bot saldirilarini engeller)
 rate-limit-enabled: true
 rate-limit-minutes: 5
 rate-limit-max-requests: 10
 
 # ===== VAULT ECONOMY INTEGRATION =====
-# Rewards players with money on their first registration (Ilk kayitta para odulu)
+# Rewards players with in-game currency upon their very first registration. Requires Vault.
+# (Sunucuya ilk kez kayit olan oyunculara verilecek baslangic para odulu. Vault eklentisi gerektirir)
 vault:
   reward-enabled: true
   reward-amount: 100
 
 # ===== SANDBOX MODE =====
-# Disables password verification for testing/development (Gelistirici modu - sifre sormaz)
+# Disables all password authentication checks for test/staging servers. (Default: false)
+# (Gelistirici ve test sunuculari icin sifre sormayi tamamen devre disi birakir - Varsayilan: false)
 sandbox-mode: false
 
 # ===== CHAT PASSWORD FILTER =====
-# Hides passwords typed in chat with ***** (Chat'e yazilan sifreleri sansurler)
+# Automatically hides passwords with ***** if players accidentally type them in public chat.
+# (Oyuncular sifrelerini yanlislikla genel sohbete yazarsa otomatik olarak ***** seklinde gizler)
 chat-filter-passwords: true
 
 # ===== TAB COMPLETION BLOCK =====
-# Blocks command completion for unauthenticated players (Giris yapmayana tab tamamlama engeli)
+# Hides server commands from tab-completion until the player has successfully logged in.
+# (Giris yapmamis oyuncularin TAB tusuna basarak sunucu komutlarini gormesini engeller)
 block-tab-completion: true
 
 # ===== AUTO LOGIN BY IP =====
-# Automatically logs in if IP matches without asking password (IP ile otomatik giris - Onerilmez: false)
+# Automatically logs in players without asking for a password if their IP matches previous session.
+# (Kayitli IP ile eslesirse sifre sormadan otomatik giris yapar - Dinamik IP riskleri nedeniyle onerilmez: false)
 auto-login-by-ip: false
 ip-match-octets: 3
 
 # ===== REMINDERS =====
-# Periodically reminds unauthenticated players to log in (Giris hatirlatmasi)
+# Periodically sends title and chat reminders to unauthenticated players.
+# (Giris yapmamis oyunculara belirli araliklarla ekrandan ve chatten giris yapma hatirlatmasi gonderir)
 reminders-enabled: true
 reminder-interval-seconds: 30
 
 # ===== PASSWORD BLACKLIST =====
-# Disallows easily guessable common passwords (Engellenen basit sifreler)
+# List of insecure/common passwords that cannot be chosen during registration.
+# (Kayit olurken kullanilmasi engellenen cok yaygin ve tahmin edilmesi kolay guvensiz sifreler listesi)
 password-blacklist:
   - "1234"
   - "12345"
@@ -82,7 +102,8 @@ password-blacklist:
   - "deneme"
 
 # ===== CHAT JOIN / LEAVE MESSAGES =====
-# Broadcast join/leave messages (Giris/cikis mesajlarini goster)
+# Enables or disables custom join and leave broadcast messages in chat.
+# (Oyuncular sunucuya girdiginde veya ciktiginda genel sohbette yayinlanan bildirim mesajlarini acar/kapatir)
 chat:
   join_enabled: true
   leave_enabled: true
