@@ -25,7 +25,7 @@ public class MetricsManager {
             }));
 
             metrics.addCustomChart(new org.bstats.charts.SimplePie("language", () -> {
-                return plugin.getConfig().getString("dil", "tr");
+                return plugin.getConfig().getString("language", plugin.getConfig().getString("dil", "en"));
             }));
 
             plugin.getLogger().info("bStats metrics started successfully!");

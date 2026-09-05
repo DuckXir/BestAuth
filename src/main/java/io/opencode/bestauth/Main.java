@@ -103,9 +103,9 @@ public final class Main extends JavaPlugin implements Listener, TabCompleter {
                     dbManager.setMysqlBilgileri(
                         getConfig().getString("mysql.host", "localhost"),
                         getConfig().getInt("mysql.port", 3306),
-                        getConfig().getString("mysql.veritabani", "bestauth"),
-                        getConfig().getString("mysql.kullanici", "root"),
-                        getConfig().getString("mysql.sifre", "")
+                        getConfig().getString("mysql.database", getConfig().getString("mysql.veritabani", "bestauth")),
+                        getConfig().getString("mysql.username", getConfig().getString("mysql.kullanici", "root")),
+                        getConfig().getString("mysql.password", getConfig().getString("mysql.sifre", ""))
                     );
                 }
                 dbManager.baglan();
@@ -190,28 +190,35 @@ public final class Main extends JavaPlugin implements Listener, TabCompleter {
 
     private void yukleConfig() {
         reloadConfig();
-        girisSuresi = getConfig().getInt("giris-suresi", 60);
-        ipLogla = getConfig().getBoolean("ip-logla", true);
-        sifreMin = getConfig().getInt("sifre-min", 4);
-        sifreMax = getConfig().getInt("sifre-max", 32);
-        maksHesapSayisi = getConfig().getInt("maks-hesap-sayisi", 1);
-        maksDeneme = getConfig().getInt("maks-deneme", 3);
-        hataGecikme = getConfig().getInt("hata-gecikme", 2);
-        sifreFiltre = getConfig().getBoolean("sifre-filtre", true);
-        tabEngel = getConfig().getBoolean("tab-engel", true);
-        ipGirisAktif = getConfig().getBoolean("ip-giris-aktif", false);
-        ipEslesmeOktet = getConfig().getInt("ip-eslesme-oktet", 3);
-        karaListe = getConfig().getStringList("sifre-kara-listesi");
-        rateLimitAktif = getConfig().getBoolean("rate-limit-aktif", true);
-        rateLimitDakika = getConfig().getInt("rate-limit-dakika", 5);
-        rateLimitMaks = getConfig().getInt("rate-limit-maks", 10);
-        vaultOdulAktif = getConfig().getBoolean("vault.odul-aktif", true);
-        vaultOdulMiktari = getConfig().getDouble("vault.odul-miktari", 100.0);
-        sandboxModu = getConfig().getBoolean("sandbox-modu", false);
-        animsatmaAktif = getConfig().getBoolean("animsatma-aktif", true);
-        animsatmaAralik = getConfig().getInt("animsatma-aralik", 30);
-        veritabaniTipi = getConfig().getString("veritabani-tipi", "yaml");
-        String dil = getConfig().getString("dil", "tr");
+        girisSuresi = getConfig().getInt("login-timeout", getConfig().getInt("giris-suresi", 60));
+        ipLogla = getConfig().getBoolean("log-ip", getConfig().getBoolean("ip-logla", true));
+        sifreMin = getConfig().getInt("password-min-length", getConfig().getInt("sifre-min", 4));
+        sifreMax = getConfig().getInt("password-max-length", getConfig().getInt("sifre-max", 32));
+        maksHesapSayisi = getConfig().getInt("max-accounts-per-ip", getConfig().getInt("maks-hesap-sayisi", 1));
+        maksDeneme = getConfig().getInt("max-login-attempts", getConfig().getInt("maks-deneme", 3));
+        hataGecikme = getConfig().getInt("failed-attempt-delay", getConfig().getInt("hata-gecikme", 2));
+        sifreFiltre = getConfig().getBoolean("chat-filter-passwords", getConfig().getBoolean("sifre-filtre", true));
+        tabEngel = getConfig().getBoolean("block-tab-completion", getConfig().getBoolean("tab-engel", true));
+        ipGirisAktif = getConfig().getBoolean("auto-login-by-ip", getConfig().getBoolean("ip-giris-aktif", false));
+        ipEslesmeOktet = getConfig().getInt("ip-match-octets", getConfig().getInt("ip-eslesme-oktet", 3));
+        
+        List<String> bl = getConfig().getStringList("password-blacklist");
+        if (bl.isEmpty()) bl = getConfig().getStringList("sifre-kara-listesi");
+        karaListe = bl;
+
+        rateLimitAktif = getConfig().getBoolean("rate-limit-enabled", getConfig().getBoolean("rate-limit-aktif", true));
+        rateLimitDakika = getConfig().getInt("rate-limit-minutes", getConfig().getInt("rate-limit-dakika", 5));
+        rateLimitMaks = getConfig().getInt("rate-limit-max-requests", getConfig().getInt("rate-limit-maks", 10));
+        
+        vaultOdulAktif = getConfig().getBoolean("vault.reward-enabled", getConfig().getBoolean("vault.odul-aktif", true));
+        vaultOdulMiktari = getConfig().getDouble("vault.reward-amount", getConfig().getDouble("vault.odul-miktari", 100.0));
+        
+        sandboxModu = getConfig().getBoolean("sandbox-mode", getConfig().getBoolean("sandbox-modu", false));
+        animsatmaAktif = getConfig().getBoolean("reminders-enabled", getConfig().getBoolean("animsatma-aktif", true));
+        animsatmaAralik = getConfig().getInt("reminder-interval-seconds", getConfig().getInt("animsatma-aralik", 30));
+        
+        veritabaniTipi = getConfig().getString("database-type", getConfig().getString("veritabani-tipi", "yaml"));
+        String dil = getConfig().getString("language", getConfig().getString("dil", "en"));
 
         if (messageManager == null) {
             messageManager = new MessageManager(getDataFolder(), dil);

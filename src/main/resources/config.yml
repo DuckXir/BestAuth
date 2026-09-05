@@ -1,83 +1,88 @@
 # ===== LOGIN TIME LIMIT =====
-# Time limit for players to log in (seconds)
-giris-suresi: 60
+# Time limit for players to authenticate in seconds (Giris icin taninan sure - saniye)
+login-timeout: 60
 
 # ===== DEFAULT LANGUAGE =====
-# Options: en (English), tr (Turkish), de (German), es (Spanish)
-dil: en
+# Options (Secenekler): en (English), tr (Turkce), de (Deutsch), es (Espanol)
+language: en
 
 # ===== IP LOGGING =====
-ip-logla: true
+# Saves player IP addresses on successful authentication (IP adreslerini kaydetme)
+log-ip: true
 
 # ===== MAX ACCOUNTS PER IP =====
-# Maximum accounts allowed per single IP address
-maks-hesap-sayisi: 1
+# Maximum registered accounts allowed per single IP address (IP basina maksimum hesap sayisi)
+max-accounts-per-ip: 1
 
 # ===== DATABASE SETTINGS =====
-# Options: yaml, sqlite, mysql
-veritabani-tipi: yaml
+# Storage types (Depolama turu): yaml, sqlite, mysql
+database-type: yaml
 
 mysql:
   host: "localhost"
   port: 3306
-  veritabani: "bestauth"
-  kullanici: "root"
-  sifre: ""
+  database: "bestauth"
+  username: "root"
+  password: ""
 
 # ===== PASSWORD RULES =====
-sifre-min: 4
-sifre-max: 32
+# Minimum and maximum password length (Minimum ve maksimum sifre uzunlugu)
+password-min-length: 4
+password-max-length: 32
 
 # ===== BRUTE FORCE PROTECTION =====
-maks-deneme: 3
-hata-gecikme: 2
+# Max failed attempts before kick & delay in seconds (Maksimum yanlis deneme hakki ve bekleme suresi)
+max-login-attempts: 3
+failed-attempt-delay: 2
 
 # ===== RATE LIMITING (IP BASED) =====
-rate-limit-aktif: true
-rate-limit-dakika: 5
-rate-limit-maks: 10
+# Prevents bot request spam (Botlarin seri istek gondermesini engeller)
+rate-limit-enabled: true
+rate-limit-minutes: 5
+rate-limit-max-requests: 10
 
 # ===== VAULT ECONOMY INTEGRATION =====
-# Rewards players with money upon their first registration
+# Rewards players with money on their first registration (Ilk kayitta para odulu)
 vault:
-  odul-aktif: true
-  odul-miktari: 100
+  reward-enabled: true
+  reward-amount: 100
 
 # ===== SANDBOX MODE =====
-# Disables password verification for testing servers (Default: false)
-sandbox-modu: false
+# Disables password verification for testing/development (Gelistirici modu - sifre sormaz)
+sandbox-mode: false
 
 # ===== CHAT PASSWORD FILTER =====
-# Replaces passwords with ***** if accidentally typed in chat
-sifre-filtre: true
+# Hides passwords typed in chat with ***** (Chat'e yazilan sifreleri sansurler)
+chat-filter-passwords: true
 
 # ===== TAB COMPLETION BLOCK =====
-# Blocks command completion for unauthenticated players
-tab-engel: true
+# Blocks command completion for unauthenticated players (Giris yapmayana tab tamamlama engeli)
+block-tab-completion: true
 
 # ===== AUTO LOGIN BY IP =====
-# Automatically logs in if IP matches (Not recommended: false)
-ip-giris-aktif: false
-ip-eslesme-oktet: 3
+# Automatically logs in if IP matches without asking password (IP ile otomatik giris - Onerilmez: false)
+auto-login-by-ip: false
+ip-match-octets: 3
 
 # ===== REMINDERS =====
-# Periodically reminds unauthenticated players to log in
-animsatma-aktif: true
-animsatma-aralik: 30
+# Periodically reminds unauthenticated players to log in (Giris hatirlatmasi)
+reminders-enabled: true
+reminder-interval-seconds: 30
 
 # ===== PASSWORD BLACKLIST =====
-# Disallows easily guessable passwords
-sifre-kara-listesi:
+# Disallows easily guessable common passwords (Engellenen basit sifreler)
+password-blacklist:
   - "1234"
   - "12345"
   - "123456"
-  - "sifre"
   - "password"
+  - "sifre"
   - "qwerty"
   - "abc123"
   - "deneme"
 
-# ===== CHAT MESSAGES =====
+# ===== CHAT JOIN / LEAVE MESSAGES =====
+# Broadcast join/leave messages (Giris/cikis mesajlarini goster)
 chat:
   join_enabled: true
   leave_enabled: true
